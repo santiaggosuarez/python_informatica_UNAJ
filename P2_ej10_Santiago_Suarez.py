@@ -1,7 +1,7 @@
 #pedimos ancho y largo para calcular el área del terreno
 
-ancho = input("ingrese ancho del terreno: ")
-largo = input("ingrese largo del terreno: ")
+ancho = input("ingrese ancho del terreno en metros: ")
+largo = input("ingrese largo del terreno en metros: ")
 area = int(ancho) * int(largo)
 
 #calculamos el área de los paneles de pasto
