@@ -9,5 +9,5 @@ def cuantos_dias(x):
 
 #damos valor a la variable x
 
-x = int(input("ingrese el número del mes, retornaremos su cantidad de días: "))
+x = int(input("ingrese el número del mes para saber su cantidad de días: "))
 print(cuantos_dias(x))
