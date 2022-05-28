@@ -1,4 +1,5 @@
 def imprimo_fecha(dia,mes,año):
-  print(dia," de ", mes, "de", año)
+  resultado = str(dia) + " de " + str(mes) + " de " + str(año)
+  return resultado
 
-imprimo_fecha(12,"mayo",1997)
+print(imprimo_fecha(12,"mayo",1997))
