@@ -12,8 +12,4 @@ def es_triangulo(long1,long2,long3):
   
   return resultado
 
-long1 = float(input("ingrese una primera longitud: "))
-long2 = float(input("ingrese una segunda longitud: "))
-long3 = float(input("ingrese una tercera longitud: "))
-
 print(es_triangulo(long1,long2,long3))
