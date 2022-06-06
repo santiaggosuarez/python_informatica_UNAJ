@@ -3,10 +3,10 @@
 
 def numero_de_pulsaciones(edad,entrenado):
 
-  if entrenado == "si":
+  if entrenado.lower() == "si":
     resultado = (210 - edad)/10
   
-  elif entrenado == "no":
+  elif entrenado.lower() == "no":
     resultado = (220 - edad)/10
   
   return resultado
