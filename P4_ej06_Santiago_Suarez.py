@@ -7,8 +7,6 @@ def edad_persona(año_nacimiento):
   
   return edad
 
-año_nacimiento = int(input("ingrese su año de nacimiento: "))
-
 #función para decir en que etapa de la vida se encuentra
 
 def etapa_persona(edad_persona):
