@@ -10,6 +10,4 @@ def dos_numeros(n,m):
 
   return resultado
 
-n = int(input("ingrese el dividendo: "))
-m = int(input("ingrese el divisor: "))
 print(dos_numeros(n,m))
