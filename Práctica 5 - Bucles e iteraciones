@@ -1,0 +1,116 @@
+#Ejercicio 5: Escribir un programa que calcule el promedio de N números ingresados por el usuario.
+# (AYUDA: al comenzar el programa debe preguntar la cantidad de números a ingresar,
+#luego iterar y leer tantos números del teclado como se indicó al inicio.)
+
+num_a_ingresar = int(input("cantidad de num: "))
+
+cant = 0
+suma = 0
+
+while cant < num_a_ingresar:
+  num = float(input("ingrese num: "))
+  suma += num
+  cant += 1
+
+promedio = suma/cant
+print("el promedio es: ", promedio)
+
+#########################################################################################################
+
+#Ejercicio 6: Escriba un programa que lea nombres de personas hasta que se ingrese el nombre “zzz”.
+#Debe imprimir la cantidad de nombres que comienzan con “A”.
+
+nom = input("ingrese un nombre (finaliza al poner 'zzz'): ")
+nom_con_a = 0
+
+while nom.lower() != "zzz":
+  if nom.lower()[0] == "a":
+    nom_con_a += 1
+    nom = input("ingrese un nombre (finaliza al poner 'zzz'): ")
+  else:
+    nom = input("ingrese un nombre (finaliza al poner 'zzz'): ")
+
+cantidad = nom_con_a
+print("la cantidad de nombres que empiezan con A es: ", cantidad)
+
+############################################################################################################
+
+#Ejercicio 8: Escriba un programa que reciba del usuario su nombre, apellido y patente hasta que ingrese AAA,
+#e imprima si está exento de impuesto o no. Tener en cuenta que los autos cuyas patentes empiezan con R, S y T no deben pagar impuesto.
+
+nom = input("ingrese su nombre y apellido (para finalizar 'AAA'): ")
+
+lista_exentos = []
+lista_impuestos = []
+
+while nom.lower() != "aaa":
+  pat = input("ingrese su patente: ")
+  if pat.lower()[0] == "r" or pat.lower()[0] == "s" or pat.lower()[0] == "t":
+    lista_exentos.append(nom)
+    nom = input("ingrese su nombre y apelldo (para finalizar 'AAA'): ")
+  else:
+    lista_impuestos.append(nom)
+    nom = input("ingrese su nombre y apelldo (para finalizar 'AAA'): ")
+    
+
+print()
+print("QUEDAN EXENTOS DE PAGAR IMPUESTOS:")
+for nom in lista_exentos:
+  print(nom)
+
+print()
+
+print("DEBEN PAGAR IMPUESTOS:")
+for nom in lista_impuestos:
+  print(nom)
+  
+##################################################################################
+
+#Ejercicio 12: Dada la siguiente lista [1, 14, 56, 43, 23, 46, 58, 123, 67 ]
+#escribir un programa que muestre el número más alto.
+
+CON WHILE
+
+lista = [1, 14, 56, 43, 23, 46, 58, 123, 67 ]
+max = 0
+cont = 0
+
+while cont != len(lista):
+  if lista[cont] > max:
+    max = lista[cont]
+    cont +=1
+  else:
+    cont += 1
+
+print(max)
+#################
+CON FOR
+
+lista = [1, 14, 56, 43, 23, 46, 58, 123, 67 ]
+
+#igualo maximo al primer elemento de la lista para que funcione con listas que contengan numeros negativos
+max = lista[0]
+
+#recorro la lista comparando cada numero con el maximo para saber cual es el mayor
+for num in lista:
+  if num > max:
+    max = num
+
+print(max)
+
+############################################################################################
+
+#Ejercicio 13: Escriba un programa que solicite nombres de localidades y códigos postales al usuario hasta que se ingresa el código postal 0. Debe generar una lista con todos los valores ingresados e imprimirla.
+
+localidad = input("ingrese una localidad: ")
+cp = int(input("ingrese su código postal ('0' para finalizar): "))
+lista = []
+
+while cp != 0:
+  lista.append("localidad: " + localidad + " CP: " + str(cp))
+  localidad = input("ingrese una localidad: ")
+  cp = int(input("ingrese su código postal ('0' para finalizar): "))
+
+print()
+for x in lista:
+    print(x)
