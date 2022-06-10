@@ -1,0 +1,27 @@
+#a- Realice un programa que solicite el ingreso de notas de alumnos hasta que ingrese el apellido “PEREZ”. La información a ingresar es: nombre, apellido, materia y Nota. El programa debe calcular el promedio de las notas de la materia “fundamentos”. Nota: (40 pts)
+
+nombre = input("nombre: ")
+apellido = input("apellido: ")
+materia = input("materia: ")
+Nota = float(input("nota: "))
+
+lista = []
+
+while apellido.lower() != "perez":
+  lista.append([nombre, apellido, materia, Nota])
+  nombre = input("nombre: ")
+  apellido = input("apellido: ")
+  materia = input("materia: ")
+  Nota = float(input("nota: "))
+
+suma = 0
+cant = 0
+
+for elemento in lista:
+  if elemento[2].lower() == "fundamentos":
+    suma += elemento[3]
+    cant += 1
+
+promedio = suma/cant
+
+print("el promedio de fundamentos es: ", promedio)
