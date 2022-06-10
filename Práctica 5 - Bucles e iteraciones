@@ -114,3 +114,23 @@ while cp != 0:
 print()
 for x in lista:
     print(x)
+
+############################################################################################
+
+#crear un programa que solicite el ingreso de palabras hasta que se igrese "aaa" e imprima la palabra más larga.
+
+palabra = input("ingrese una palabra: ")
+lista_palabra = []    #aca voy a guardar las palabras que ingrese
+palabra_larga = ""   #creo una palabra vacia para despues comparar
+
+while palabra != "aaa":
+  lista_palabra.append(palabra)
+  palabra = input("ingrese una palabra: ")
+  
+for pal in lista_palabra:
+  #comparo el largo de la palabra ingresada con el string vacio
+  if len(pal) > len(palabra_larga):
+    #si es más larga entonces palabra_larga pasa a contener dicha palabra
+    palabra_larga = pal
+
+print("la palabra más larga es: " + palabra_larga)
