@@ -37,3 +37,30 @@ def tiene_mas_vocales(lista_con_vocales):
 #print(tiene_mas_vocales(lista_nro_vocales(palabras)))
 
 #1.d. escriba el código del programa que integra las 3 funciones antes definidas.
+
+#################################################################################################################################
+
+#2.a) Realice un programa para manejar equipos de fútbol, Armar una lista que tenga información sobre los equipos de fútbol. Para cada equipo deberán tener: el nombre del equipo, puntaje en la tabla de posiciones y la cantidad de goles a favor.
+
+lista_equipos = [["River",50,100],["boca",49,79],["independiente",30,69],["racing",40,101],["san lorenzo",15,68]]
+  
+#2.b) Usando la lista anterior, imprimir la cantidad de goles a favor que tienen los equipos que están en la primera y última posición de la lista.
+
+print(lista_equipos[0][2],lista_equipos[-1][2])
+
+#2.c) Imprimir el nombre del equipo Campeón de la lista generada en el punto 2.a., el equipo campeón es aquel que sumo más puntos.
+
+def equipo_campeon(lista_equipos):
+  campeon = " "
+  max = 0
+  for equipo in lista_equipos:
+    if equipo[1] > max:
+      max = equipo[1]
+      campeon = equipo[0]
+  return campeon
+
+print(equipo_campeon(lista_equipos))
+
+#################################################################################################################################
+
+
