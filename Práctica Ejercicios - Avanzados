@@ -4,16 +4,18 @@ def vocales_en(palabra):
   cont = 0
   
   for letra in palabra:
-    if letra.lower() == "a" or letra == "e" or letra == "i" or letra == "o" or letra == "u":
+    if letra.lower() in ("a","e","i","o","u"):
       cont += 1
       
   return cont
 
+
 #1.b. Defina una función que genere una lista de palabras hasta que se ingrese la palabra “fin” la cual NO debe ser almacenada en la lista, por cada palabra, también se guardara la cantidad de vocales que contiene la misma, para esto deberá utilizar la función definida en el punto 1.a., al finalizar la función deberá retornar la lista generada. La lista resultado deberá tener una estructura similar a:
 #1) [[“uno”,2],[ “pepe”,2],[”agua!”,3],…etc]
 
-def lista_nro_vocales(palabras):
+def lista_nro_vocales():
   lista_palabras_vocales = []
+  palabras = input("ingrese una palabra: ")
     
   while palabras.lower() != "fin":
     lista_palabras_vocales.append([palabras,vocales_en(palabras)])
@@ -21,8 +23,7 @@ def lista_nro_vocales(palabras):
   
   return lista_palabras_vocales
 
-palabras = input("ingrese una palabra: ")
-#print(lista_nro_vocales(palabras))
+lista_nro_vocales()
 
 #1.c. defina una función que reciba como argumento la lista generada en el punto 1.b) e imprimir las palabras que tienen mas de 3 vocales.
 
