@@ -195,3 +195,107 @@ while menu != 0:
 
 
 #####################################################################################
+
+#Ejercicio 4: Se desea realizar un programa para una universidad. El mismo deberá permitir guardar la información de todos los cursos que se dictan en la misma. La cantidad de cursos existentes es ingresado por el usuario del sistema. De cada curso se debe conocer: Nombre, Cantidad de Clases, Día de Dictado, Hora de Comienzo, Duración en minutos. Importante: si la duración del curso es mayor a 360 minutos, NO se debe guardar la información del mismo.
+
+def cursos():
+
+  cont = 0
+  cant_cursos = int(input("ingrese la cantidad de cursos: "))
+  lista = []
+  
+  
+  while cont < cant_cursos:
+    nombre = input("ingrese el nombre del curso: ")
+    cant_clases = int(input("ingrese la cantidad de clases: "))
+    dia = input("ingrese el día de dictado: ")
+    hora = float(input("ingrese el horario de comienzo: "))
+    duracion = float(input("ingrese la duración en minutos: "))
+    print()
+    if duracion <= 360:
+      lista.append([nombre,cant_clases,dia,hora,duracion])
+    cont += 1
+  
+  return lista
+
+#El programa debe permitir
+#a) Imprimir todos los cursos que tengan más de 5 clases
+#b) Imprimir los cursos que se dictan en un día de la semana indicado por el usuario.
+#c) Imprimir el curso más intensivo (definido por la cantidad de clases y la duración de cada clase)
+#d) Imprimir los datos en que se dicta un curso indicado por el usuario.
+#e) Imprima todos los cursos que comienzan con una letra indicada por el usuario.
+#El programa escrito deberá mostrar un menú para que el usuario elija la opción deseada. Importante: el sistema termina cuando el usuario elige la opción “salir”
+
+def imprimir_clase(lista):
+  print("curso: " + lista[0])
+  print("cantidad de clases: ", lista[1])
+  print("día de dictado: " + lista[2])
+  print("horario: ", lista[2])
+  print("duración: " + str(lista[3]) + " minutos \n")
+
+def imprimir_clase_de_lista(lista):
+  for dato in lista:
+    imprimir_clase(dato)
+
+def mas_cinco_clases(lista):
+  for clase in lista:
+    if clase[1] > 5:
+      imprimir_clase_de_lista(lista)
+
+def dia_semana(lista):
+  dia = input("ingrese un día de la semana: ")
+  for clase in lista:
+    if clase[2].lower() == dia:
+      imprimir_clase_de_lista(clase)
+    else:
+      print("no se encontraron cursos")
+
+def mas_intensivo(lista):
+  max = 0
+  lista_nueva = []
+  for clase in lista:
+    carga = clase[1] * clase[4]
+    if carga > max:
+      max = carga
+      lista_nueva.append(clase[0],clase[1],clase[2],clase[3],clase[4],)
+  imprimir_clase(lista_nueva)
+
+
+def datos_curso(lista):
+  curso_user = input("sobre que curso desea consultar? ")
+  for curso in lista:
+    if curso[0].lower() == curso_user:
+      imprimir_clase_de_lista(curso)
+    else:
+      print("no se encontró el curso")
+
+def datos_curso_letra(lista):
+  curso_user = input("ingrese una letra: ")
+  for curso in lista:
+    if curso[0][0].lower() == curso_user:
+      imprimir_clase_de_lista(curso)
+    else:
+      print("no se encontraron cursos")
+
+lista_prueba = [["matematica",2,"miercoles",18,120],["matematica II",3,"viernes",19,120],["lengua",1,"jueves",14,90],["fundamentos",1,"sabado",13,320],["física",1,"miercoles",18,180],]
+
+menu = int(input("Menú Principal\n 1 - Consultar los cursos que tienen más de 5 clases.\n 2 - Consultar los cursos que se dictan en un día indicado.\n 3 - Consultar el curso más intensivo.\n 4 - Consultar sobre un curso en especifico.\n 5 - Consultar sobre un curso con su letra inicial.\n 0 - Salir \n"))
+
+while menu != 0:
+  
+  if menu == 1:
+    mas_cinco_clases(lista_prueba)
+  elif menu == 2:
+    dia_semana(lista_prueba)
+  elif menu == 3:
+    mas_intensivo(lista_prueba)
+  elif menu == 4:
+    datos_curso(lista_prueba)
+  elif menu == 5:
+    datos_curso_letra(lista_prueba)
+  else:
+    print("ERROR - ingrese un valor válido")
+      
+menu = int(input("Menú Principal\n 1 - Consultar los cursos que tienen más de 5 clases.\n 2 - Consultar los cursos que se dictan en un día indicado.\n 3 - Consultar el curso más intensivo.\n 4 - Consultar sobre un curso en especifico.\n 5 - Consultar sobre un curso con su letra inicial.\n 0 - Salir \n"))
+
+##############################################################################################################
