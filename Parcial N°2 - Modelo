@@ -1,27 +1,62 @@
 #a- Realice un programa que solicite el ingreso de notas de alumnos hasta que ingrese el apellido “PEREZ”. La información a ingresar es: nombre, apellido, materia y Nota. El programa debe calcular el promedio de las notas de la materia “fundamentos”. Nota: (40 pts)
 
-nombre = input("nombre: ")
-apellido = input("apellido: ")
-materia = input("materia: ")
-Nota = float(input("nota: "))
+def promedio_fundamentos():
 
-lista = []
+  lista = []
+  suma = 0
+  cant = 0
+  apellido = input("apellido (PEREZ para finalizar): ")
+  
+  while apellido.lower() != "perez":
+    nombre = input("nombre: ")
+    materia = input("materia: ")
+    Nota = float(input("nota: "))
+    #control nota se encuentre entre 0 y 10
+    while Nota > 10 or Nota < 0:
+      print("por favor ingrese un valor entre 0 y 10")
+      Nota = float(input("nota: "))
+    print()
+    lista.append([nombre, apellido, materia, Nota])
+    apellido = input("apellido: ")
+  
+  for elemento in lista:
+    if elemento[2].lower() == "fundamentos":
+      suma += elemento[3]
+      cant += 1
 
-while apellido.lower() != "perez":
-  lista.append([nombre, apellido, materia, Nota])
-  nombre = input("nombre: ")
-  apellido = input("apellido: ")
-  materia = input("materia: ")
-  Nota = float(input("nota: "))
+  #control si la división da 0/0
+  if suma == 0 or cant == 0:
+    promedio = 0
+    return promedio
+  
+  promedio = suma/cant
+  return promedio
 
-suma = 0
-cant = 0
+print("\nel promedio de fundamentos es: " + str(promedio_fundamentos()))
 
-for elemento in lista:
-  if elemento[2].lower() == "fundamentos":
-    suma += elemento[3]
-    cant += 1
+#######################################################################################
 
-promedio = suma/cant
+#b- Realice un programa para una farmacia, que permita el ingreso de 100 productos más vendidos en el mes. De cada producto se debe ingresar el nombre, laboratorio, precio y cantidad. Luego imprimir el monto facturado para aquellos productos de laboratorio "Roche" Nota: (40 pts)
 
-print("el promedio de fundamentos es: ", promedio)
+def productos_roche():
+  lista = []
+  suma = 0
+  cont = 0
+
+  while cont != 10:
+    nombre = input("nombre del producto: ")
+    lab = input("laboratorio: ")
+    precio = float(input("precio: "))
+    cantidad = int(input("cantidad: "))
+    print()
+    lista.append([nombre,lab,precio,cantidad])
+    cont += 1
+  
+  for elemento in lista:
+    if elemento[1].lower() == "roche":
+      suma += elemento[2] * elemento[3]
+
+  return suma
+
+print("\nel monto facturado por 'Roche' es: $" + str(productos_roche()))
+
