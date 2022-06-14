@@ -68,19 +68,18 @@ print(equipo_campeon(lista_equipos))
 
 def alumnos_unaj():
   legajo = int(input("legajo(0 para terminar): "))
-  lista = []
+  lista = [[1234,"santiago","suarez","12345678"],[134,"enzo","perez","12345678r"],[11,"manuel","belgrano","123456780"]]
   
   while legajo != 0:
     nombre = input("nombre: ")
     apellido = input("apellido: ")
     contra = input("contraseña: ")
+    print()
     lista.append([legajo,nombre,apellido,contra])
     legajo = int(input("legajo: "))
     
   return lista
-
-lista_alumnos_unaj = [[1234,"santiago","suarez","12345678"],[134,"enzo","perez","12345678r"],[11,"manuel","belgrano","123456780"]]
-
+  
 #3.b) Realice una función llamada imprimir_alumno que recibe como parámetro una lista con los datos de un alumno (Legajo, nombre, apellido, contraseña), los datos del alumno serán mostrados por pantalla con la forma:
 #Legajo:XXXX
 #Nombre:XXXX
@@ -92,8 +91,7 @@ def imprimir_alumno(alumno):
   print("legajo: " + str(alumno[0]))
   print("nombre: " + alumno[1])
   print("apellido: " + alumno[2])
-  print("contraseña: " + alumno[3])
-  print()
+  print("contraseña: " + alumno[3] + "\n")
 
 def imprimir_alumno_de_lista(alumnos):
   for alumno in alumnos:
@@ -164,6 +162,7 @@ def verificar_claves(lista_alumnos):
     else:
       mensaje = alumno[1] + " " + alumno[2] + ": reestablecer contraseña"
     print(mensaje)
+  print()
 
 #Construir un menú, el menú deberá permitir ingresar 5 opciones, La opción 0 permite salir del menú, el resto de las opciones permiten :
 #- imprimir los datos de todos los alumnos con el formato pedido en el punto a)
@@ -171,28 +170,28 @@ def verificar_claves(lista_alumnos):
 #- imprimir los datos del alumno que tiene el nombre más largo.
 #- Imprimir si las contraseñas de cada alumno cumplen con un tamaño mayor a 6 caracteres y terminan con un número.
 
-def menu_unaj(x):
-  print("Bienvenido al menú UNAJ")
-  print()
-  print("0 - Salir")
-  print("1 - Ver datos de los alumnos.")
-  print("2 - Ver alumno con el legajo menor.")
-  print("3 - Ver alumno con el nombre más largo.")
-  print("4 - Ver si las contraseñas son válidas.")
-  print()
-  y = int(input())
+#(al menú le agregué una opción extra que es la de agregar alumnos)
 
-    if y == 1:
-      imprimir_alumno_de_lista(x)
-    elif y == 2:
-      legajo_menor(x)
-    elif y == 3:
-      nombre_mas_largo(x)
-    elif y == 4:
-      verificar_claves(x)
-    else:
-      y = input("ERROR ingrese un valor válido: ")
+lista_alumnos_unaj = alumnos_unaj()
 
-menu_unaj(lista_alumnos_unaj)
+menu = int(input("Menú Principal\n 1 - Ver datos de los alumnos.\n 2 - Ver alumno con el legajo menor.\n 3 - Ver alumno con el nombre más largo.\n 4 - Ver si las contraseñas son válidas.\n 5 - Agregar alumno\n 0 - Salir \n"))
+
+while menu != 0:
+  
+  if menu == 1:
+    imprimir_alumno_de_lista(lista_alumnos_unaj)
+  elif menu == 2:
+    legajo_menor(lista_alumnos_unaj)
+  elif menu == 3:
+    nombre_mas_largo(lista_alumnos_unaj)
+  elif menu == 4:
+    verificar_claves(lista_alumnos_unaj)
+  elif menu == 5:
+    lista_alumnos_unaj = alumnos_unaj()
+  else:
+    print("ERROR - ingrese un valor válido")
+    
+  menu = int(input("Menú Principal\n 1 - Ver datos de los alumnos.\n 2 - Ver alumno con el legajo menor.\n 3 - Ver alumno con el nombre más largo.\n 4 - Ver si las contraseñas son válidas.\n 5 - Agregar alumno\n 0 - Salir \n"))
+
 
 #####################################################################################
