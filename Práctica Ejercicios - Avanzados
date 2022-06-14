@@ -64,4 +64,135 @@ print(equipo_campeon(lista_equipos))
 
 #################################################################################################################################
 
+#3.a) Realice una función que procesa la información de alumnos de la UNAJ. De cada alumno se conoce legajo, nombre, apellido, contraseña. El procesamiento termina cuando se ingresa el número de legajo 0. La función deberá retornar una lista con la información procesada.
 
+def alumnos_unaj():
+  legajo = int(input("legajo(0 para terminar): "))
+  lista = []
+  
+  while legajo != 0:
+    nombre = input("nombre: ")
+    apellido = input("apellido: ")
+    contra = input("contraseña: ")
+    lista.append([legajo,nombre,apellido,contra])
+    legajo = int(input("legajo: "))
+    
+  return lista
+
+lista_alumnos_unaj = [[1234,"santiago","suarez","12345678"],[134,"enzo","perez","12345678r"],[11,"manuel","belgrano","123456780"]]
+
+#3.b) Realice una función llamada imprimir_alumno que recibe como parámetro una lista con los datos de un alumno (Legajo, nombre, apellido, contraseña), los datos del alumno serán mostrados por pantalla con la forma:
+#Legajo:XXXX
+#Nombre:XXXX
+#Apellido:XXXX
+#Contraseña:XXXXX
+
+#lista_alumnos = [1234,"santiago","suarez","12345678"]
+def imprimir_alumno(alumno):
+  print("legajo: " + str(alumno[0]))
+  print("nombre: " + alumno[1])
+  print("apellido: " + alumno[2])
+  print("contraseña: " + alumno[3])
+  print()
+
+def imprimir_alumno_de_lista(alumnos):
+  for alumno in alumnos:
+    imprimir_alumno(alumno)
+
+  
+#3.c) Realice un función llamada legajo_menor que recibe como parámetro una lista de alumnos, de cada alumno se conoce la información (legajo, nombre, apellido, contraseña), la función debe buscar cuál es el alumno con el menor legajo dentro de la lista y retornarlo
+
+def legajo_menor(lista_alumnos):
+  min = 999999
+  nombre = ""
+  apellido = ""
+  contra = ""
+  alumno_legajo_menor = []
+  
+  for alumno in lista_alumnos:
+    if alumno[0] < min:
+      min = alumno[0]
+      nombre = alumno[1]
+      apellido = alumno[2]
+      contra = alumno[3]
+  
+  alumno_legajo_menor.append(min)
+  alumno_legajo_menor.append(nombre)
+  alumno_legajo_menor.append(apellido)
+  alumno_legajo_menor.append(contra)
+  
+  return imprimir_alumno(alumno_legajo_menor)
+
+#3.d) Realice un función llamada nombre_mas_largo que recibe como parámetro una lista de alumnos. La función debe buscar cuál es el alumno con el nombre más largo dentro de la lista y retornarlo.
+
+def nombre_mas_largo(lista_alumnos):
+  max = ""
+  legajo = 0
+  apellido = ""
+  contra = ""
+  alumno_nombre_largo = []
+
+  for alumno in lista_alumnos:
+    if len(alumno[1]) > len(max):
+      legajo = alumno[0]
+      max = alumno[1]
+      apellido = alumno[2]
+      contra = alumno[3]
+
+  alumno_nombre_largo.append(legajo)
+  alumno_nombre_largo.append(max)
+  alumno_nombre_largo.append(apellido)
+  alumno_nombre_largo.append(contra)
+  
+  return imprimir_alumno(alumno_nombre_largo)
+
+#3.e) Realice un función llamada controlar_clave que recibe como parámetro un alumno,(legajo, nombre, apellido, contraseña). La función debe controlar si la contraseña es mayor a 6 caracteres y termina con un número, deberá imprimir un mensaje especificando el error cometido en caso de no cumplir las condiciones o bien imprimir los datos del alumno si la clave cumple con todas las condiciones.
+
+def controlar_clave(alumno):
+  if len(alumno[3]) > 6 and alumno[3][-1] in ("1","2","3","4","5","6","7","8","9","0"):
+    return imprimir_alumno(alumno)
+  else:
+    return "por favor establezca una contraseña con más de 6 caracteres y que finalice en un número."
+
+
+#3.f).Realice una función llamada verificar_claves que recibe como parámetro una lista de alumnos, la función deberá controlar por cada alumno si la contraseña que usa cumple con: ser mayor a 6 caracteres y terminar con un número
+
+def verificar_claves(lista_alumnos):
+  for alumno in lista_alumnos:
+    if len(alumno[3]) > 6 and alumno[3][-1] in ("1","2","3","4","5","6","7","8","9","0"):
+      mensaje = alumno[1] + " " + alumno[2] + ": cotraseña válida"
+    else:
+      mensaje = alumno[1] + " " + alumno[2] + ": reestablecer contraseña"
+    print(mensaje)
+
+#Construir un menú, el menú deberá permitir ingresar 5 opciones, La opción 0 permite salir del menú, el resto de las opciones permiten :
+#- imprimir los datos de todos los alumnos con el formato pedido en el punto a)
+#- imprimir los datos del alumno que tiene el legajo más chico.
+#- imprimir los datos del alumno que tiene el nombre más largo.
+#- Imprimir si las contraseñas de cada alumno cumplen con un tamaño mayor a 6 caracteres y terminan con un número.
+
+def menu_unaj(x):
+  print("Bienvenido al menú UNAJ")
+  print()
+  print("0 - Salir")
+  print("1 - Ver datos de los alumnos.")
+  print("2 - Ver alumno con el legajo menor.")
+  print("3 - Ver alumno con el nombre más largo.")
+  print("4 - Ver si las contraseñas son válidas.")
+  print()
+  y = int(input())
+
+    if y == 1:
+      imprimir_alumno_de_lista(x)
+    elif y == 2:
+      legajo_menor(x)
+    elif y == 3:
+      nombre_mas_largo(x)
+    elif y == 4:
+      verificar_claves(x)
+    else:
+      y = input("ERROR ingrese un valor válido: ")
+
+menu_unaj(lista_alumnos_unaj)
+
+#####################################################################################
