@@ -196,14 +196,14 @@ while menu != 0:
 
 #####################################################################################
 
+
 #Ejercicio 4: Se desea realizar un programa para una universidad. El mismo deberá permitir guardar la información de todos los cursos que se dictan en la misma. La cantidad de cursos existentes es ingresado por el usuario del sistema. De cada curso se debe conocer: Nombre, Cantidad de Clases, Día de Dictado, Hora de Comienzo, Duración en minutos. Importante: si la duración del curso es mayor a 360 minutos, NO se debe guardar la información del mismo.
 
-def cursos():
+def cargar_datos_cursos():
 
   cont = 0
   cant_cursos = int(input("ingrese la cantidad de cursos: "))
   lista = []
-  
   
   while cont < cant_cursos:
     nombre = input("ingrese el nombre del curso: ")
@@ -213,7 +213,8 @@ def cursos():
     duracion = float(input("ingrese la duración en minutos: "))
     print()
     if duracion <= 360:
-      lista.append([nombre,cant_clases,dia,hora,duracion])
+      dato = [nombre,cant_clases,dia,hora,duracion]
+      lista.append(dato)
     cont += 1
   
   return lista
@@ -226,6 +227,7 @@ def cursos():
 #e) Imprima todos los cursos que comienzan con una letra indicada por el usuario.
 #El programa escrito deberá mostrar un menú para que el usuario elija la opción deseada. Importante: el sistema termina cuando el usuario elige la opción “salir”
 
+#funciones para imprimir una lista y una lista dentro de otra lista
 def imprimir_clase(lista):
   print("curso: " + lista[0])
   print("cantidad de clases: ", lista[1])
@@ -237,50 +239,64 @@ def imprimir_clase_de_lista(lista):
   for dato in lista:
     imprimir_clase(dato)
 
+#funcion que imprime los cursos con mas de 5 clases
 def mas_cinco_clases(lista):
+  lista_nueva = []
   for clase in lista:
     if clase[1] > 5:
-      imprimir_clase_de_lista(lista)
+      dato = [clase[0],clase[1],clase[2],clase[3],clase[4]]
+      lista_nueva.append(dato)
+  return imprimir_clase_de_lista(lista_nueva)
 
+#funcion que imprime los cursos de un dia de la semana indicado
 def dia_semana(lista):
   dia = input("ingrese un día de la semana: ")
+  lista_nueva = []
   for clase in lista:
     if clase[2].lower() == dia:
-      imprimir_clase(clase)
+      dato = [clase[0],clase[1],clase[2],clase[3],clase[4]]
+      lista_nueva.append(dato)
+  return imprimir_clase_de_lista(lista_nueva)
 
+#funcion que imprime el curso mas intensivo
 def mas_intensivo(lista):
   max = 0
   lista_nueva = []
   for clase in lista:
-    carga = clase[1] * clase[4]
+    carga = float(clase[1] * clase[4])
     if carga > max:
       max = carga
-      lista_nueva.append(clase[0],clase[1],clase[2],clase[3],clase[4],)
-  imprimir_clase(lista_nueva)
+      dato = [clase[0],clase[1],clase[2],clase[3],clase[4]]
+  lista_nueva.append(dato)
+  return imprimir_clase_de_lista(lista_nueva)
 
-
+#funcion que imprime datos del curso indicado por teclado
 def datos_curso(lista):
   curso_user = input("sobre que curso desea consultar? ")
+  lista_nueva = []
   for curso in lista:
     if curso[0].lower() == curso_user:
-      imprimir_clase_de_lista(curso)
-    else:
-      print("no se encontró el curso")
+      dato = [curso[0],curso[1],curso[2],curso[3],curso[4]]
+      lista_nueva.append(dato)
+  return imprimir_clase_de_lista(lista_nueva)
 
+#funcion que imprime datos del curso indicado por teclado (letra inicial)
 def datos_curso_letra(lista):
   curso_user = input("ingrese una letra: ")
+  lista_nueva = []
   for curso in lista:
-    if curso[0][0].lower() == curso_user:
-      imprimir_clase_de_lista(curso)
-    else:
-      print("no se encontraron cursos")
+    if curso[0][0].strip().lower() == curso_user:
+      dato = [curso[0],curso[1],curso[2],curso[3],curso[4]]
+      lista_nueva.append(dato)
+  return imprimir_clase_de_lista(lista_nueva)
 
-lista_prueba = [["matematica",2,"miercoles",18,120],["matematica II",3,"viernes",19,120],["lengua",1,"jueves",14,90],["fundamentos",1,"sabado",13,320],["física",1,"miercoles",18,180],]
+#lista_prueba = [["matematica",6,"miercoles",18,40],["matematica 2",3,"viernes",19,100],["literatura",1,"jueves",14,90],["fundamentos",1,"sabado",13,150],["fisica",1,"miercoles",18,180],]
+
+lista_prueba = cargar_datos_cursos()
 
 menu = int(input("Menú Principal\n 1 - Consultar los cursos que tienen más de 5 clases.\n 2 - Consultar los cursos que se dictan en un día indicado.\n 3 - Consultar el curso más intensivo.\n 4 - Consultar sobre un curso en especifico.\n 5 - Consultar sobre un curso con su letra inicial.\n 0 - Salir \n"))
 
 while menu != 0:
-  
   if menu == 1:
     mas_cinco_clases(lista_prueba)
   elif menu == 2:
