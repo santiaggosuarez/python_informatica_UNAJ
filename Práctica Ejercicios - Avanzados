@@ -230,8 +230,8 @@ def imprimir_clase(lista):
   print("curso: " + lista[0])
   print("cantidad de clases: ", lista[1])
   print("día de dictado: " + lista[2])
-  print("horario: ", lista[2])
-  print("duración: " + str(lista[3]) + " minutos \n")
+  print("horario: ", lista[3], " hs.")
+  print("duración: " + str(lista[4]) + " minutos \n")
 
 def imprimir_clase_de_lista(lista):
   for dato in lista:
@@ -246,9 +246,7 @@ def dia_semana(lista):
   dia = input("ingrese un día de la semana: ")
   for clase in lista:
     if clase[2].lower() == dia:
-      imprimir_clase_de_lista(clase)
-    else:
-      print("no se encontraron cursos")
+      imprimir_clase(clase)
 
 def mas_intensivo(lista):
   max = 0
@@ -296,6 +294,6 @@ while menu != 0:
   else:
     print("ERROR - ingrese un valor válido")
       
-menu = int(input("Menú Principal\n 1 - Consultar los cursos que tienen más de 5 clases.\n 2 - Consultar los cursos que se dictan en un día indicado.\n 3 - Consultar el curso más intensivo.\n 4 - Consultar sobre un curso en especifico.\n 5 - Consultar sobre un curso con su letra inicial.\n 0 - Salir \n"))
-
+  menu = int(input("Menú Principal\n 1 - Consultar los cursos que tienen más de 5 clases.\n 2 - Consultar los cursos que se dictan en un día indicado.\n 3 - Consultar el curso más intensivo.\n 4 - Consultar sobre un curso en especifico.\n 5 - Consultar sobre un curso con su letra inicial.\n 0 - Salir \n"))
+  
 ##############################################################################################################
