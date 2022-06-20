@@ -333,3 +333,39 @@ while menu != 0:
   menu = int(input("Menú Principal\n 1 - Consultar los cursos que tienen más de 5 clases.\n 2 - Consultar los cursos que se dictan en un día indicado.\n 3 - Consultar el curso más intensivo.\n 4 - Consultar sobre un curso en especifico.\n 5 - Consultar sobre un curso con su letra inicial.\n 0 - Salir \n"))
   
 ##############################################################################################################
+
+#Ejercicio 6: Nos contratan para realizar un sistema para una editorial. Se recibe un texto y se desea obtener la siguiente información:
+
+texto = "Armani, el taco no, hace la personal y ahí se va, se va, se viene Martínez para el gol y va el tercero, y va el tercero, y va el tercero, y gol de River, gol de River"
+
+#La longitud total del texto
+def longitud_total(texto):
+  return len(texto)
+
+#La cantidad de palabras componen el texto
+def cantidad_palabras(texto):
+  return len(texto.split())
+
+#La cantidad de oraciones que componen el texto.
+def cantidad_oraciones(texto):
+  return len(texto.split("."))
+
+#La cantidad de palabras que comienzan con vocal o con consonante, dependiendo del valor ingresado por el usuario.
+def cantidad_palabras_vc(texto):
+  parametro = input("ingrese 'V' para vocal y 'C' para consonante: ")
+  vocal = 0
+  consonante = 0
+  for texto.split() in texto:
+    if texto.split()[0] in ("a","e","i","o","u"):
+      vocal += 1
+    else:
+      consonante += 1
+  if parametro.lower == "v":
+    return vocal
+  elif parametro.lower == "c":
+    return consonante
+  else:
+    return "ingrese un dato válido"
+
+
+print(cantidad_palabras_vc(texto))
