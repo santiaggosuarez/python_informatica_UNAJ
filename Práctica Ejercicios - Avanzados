@@ -47,7 +47,27 @@ lista_equipos = [["River",50,100],["boca",49,79],["independiente",30,69],["racin
   
 #2.b) Usando la lista anterior, imprimir la cantidad de goles a favor que tienen los equipos que están en la primera y última posición de la lista.
 
-print(lista_equipos[0][2],lista_equipos[-1][2])
+def primero(lista):
+  puntaje_max = 0
+  equipo_max = ""
+  goles = 0
+  for equipo in lista:
+    if equipo[1] > puntaje_max:
+      puntaje_max = equipo[1]
+      equipo_max = equipo[0]
+      goles = equipo[2]
+  print("equipo puntero: " + equipo_max + ". goles: " + str(goles))
+
+def ultimo(lista):
+  puntaje_min = 9999999
+  equipo_min = ""
+  goles = 0
+  for equipo in lista:
+    if equipo[1] < puntaje_min:
+      puntaje_min = equipo[1]
+      equipo_min = equipo[0]
+      goles = equipo[2]
+  print("equipo ultimo: " + equipo_min + ". goles: " + str(goles))
 
 #2.c) Imprimir el nombre del equipo Campeón de la lista generada en el punto 2.a., el equipo campeón es aquel que sumo más puntos.
 
