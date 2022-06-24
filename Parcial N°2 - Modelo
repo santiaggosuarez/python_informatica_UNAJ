@@ -41,16 +41,14 @@ print("\nel promedio de fundamentos es: " + str(promedio_fundamentos()))
 def productos_roche():
   lista = []
   suma = 0
-  cont = 0
-
-  while cont != 10:
+  
+  for i in range(100):
     nombre = input("nombre del producto: ")
     lab = input("laboratorio: ")
     precio = float(input("precio: "))
     cantidad = int(input("cantidad: "))
     print()
     lista.append([nombre,lab,precio,cantidad])
-    cont += 1
   
   for elemento in lista:
     if elemento[1].lower() == "roche":
@@ -59,4 +57,3 @@ def productos_roche():
   return suma
 
 print("\nel monto facturado por 'Roche' es: $" + str(productos_roche()))
-
