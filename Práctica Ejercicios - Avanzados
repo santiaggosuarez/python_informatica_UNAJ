@@ -383,3 +383,179 @@ def buscar_palabra(texto):
       
   return cant
 print(buscar_palabra(texto))
+
+#####################################################################################################
+
+#Ejercicio 5: Nos contratan para realizar un sistema para un kiosco. De cada artículo se conoce código, nombre, una descripción, el precio de venta, el nombre del proveedor y si es necesaria la refrigeración del artículo (pudiendo ser R=requiere frío o N=no requiere frío)
+
+#Realice una función que cree una lista con información de artículos de kiosco. La carga de artículos finaliza cuando se ingresa un artículo cuyo código = “999” y que a la vez no requiera frío.
+
+def imprimir_lista(lista):
+  for i in lista:
+    print(
+      "codigo: " + str(i[0]) + "\n" +
+      "nombre: " + i[1] + "\n" +
+      "descripcion: " + i[2] + "\n" +
+      "precio: " + str(i[3]) + "\n" +
+      "proveedor: " + i[4] + "\n" +
+      "requiere refrigeración: " + i[5] + "\n"
+    )
+
+def datos_lista():
+  lista = []
+  codigo = int(input("codigo: "))
+  refri =  input("requiere refrigeración. si = 'R'  no = 'N': ")
+  while refri.upper() != "R" and refri.upper() != "N":
+    refri =  input("por favor ingrese un dato válido. si = 'R'  no = 'N': ")
+  
+  while codigo != 999 or refri.upper() != "N":
+    nom_articulo = input("nombre: ")
+    descripcion = input("descripcion: ")
+    precio = float(input("precio: "))
+    nom_proveedor = input("nombre del proveedor: ")
+    print()
+    datos = [codigo,nom_articulo,descripcion,precio,nom_proveedor,refri.upper()]
+    lista.append(datos)
+    codigo = int(input("codigo: "))
+    refri =  input("requiere refrigeración. si = 'R'  no = 'N': ")
+    while refri.upper() != "R" and refri.upper() != "N":
+      refri =  input("por favor ingrese un dato válido. si = 'R'  no = 'N': ")
+    
+  return lista
+#print(datos_lista())
+
+#Realice una función que cree una lista con los datos del stock, donde de cada articulo se conoce el código y la cantidad existente.
+
+def datos_codigo_stock():
+  lista = []
+  codigo = int(input("codigo (999 para finalizar): "))
+  while codigo != 999:
+    stock = int(input("stock: "))
+    print()
+    datos = [codigo,stock]
+    lista.append(datos)
+    codigo = int(input("codigo: "))
+  return lista
+
+#Se requiere imprimir los datos de todos los artículos que necesitan refrigeración o los artículos que no la necesitan, dependiendo del valor ingresado por el usuario (R=requiere frío o N=no requiere frío).
+
+lista_p = [[444, 'helado', 'es rico', 500.0, 'arti', 'R'], [300, 'alfajor', 'es de quilmes', 90.0, 'capitan del espacio', 'N'], [9871, 'salchichas', 'carne y soja', 110.0, '214', 'R'], [122, 'fideos', 'tirabuzon', 60.0, 'marolio', 'N'], [998, 'harina', '0000', 50.0, 'morixe', 'N']]
+
+lista_s = [[444,0],[300,100],[9871,50],[122,0],[998,10],[123,0]]
+
+def imprimir_refri(lista):
+  lista_refri_r = []
+  lista_refri_n = []
+  for art in lista:
+    if art[5].upper() == "R":
+      lista_refri_r.append(art)
+    elif art[5].upper() == "N":
+      lista_refri_n.append(art)
+
+  pedir = input("indique sobre que articulos desea ver los datos.\n requiere frio = R\n no requiere frio = N\n")
+  while pedir.upper() != "R" and pedir.upper() != "N":
+    pedir = input("ingrese un dato válido.\n requiere frio = R\n no requiere frio = N\n")
+
+  if pedir.upper() == "R":
+    return imprimir_lista(lista_refri_r)
+  elif pedir.upper() == "N":
+    return imprimir_lista(lista_refri_n)
+#imprimir_refri(lista_p)
+    
+#Se necesita imprimir la cantidad de artículos que necesitan refrigeración y la cantidad de artículos que no la necesitan.
+
+def cant_refri(lista):
+  cant_r = 0
+  cant_n = 0
+  for art in lista:
+    if art[5].upper() == "R":
+      cant_r += 1
+    elif art[5].upper() == "N":
+      cant_n += 1
+
+  return print(
+    "cantidad de articulos que necesitan refrigeración: " + str(cant_r) + "\n" +
+    "cantidad de articulos que necesitan refrigeración: " + str(cant_n) + "\n"
+  )
+#cant_refri(lista_p)
+
+
+#Se requiere imprimir los datos de los artículos cuyo stock es 0, de la siguiente manera: Código, nombre del artículo, y nombre del proveedor.
+
+def imprimir_stock0(lista,lista_stock):
+  lista_stock0 = []
+  lista_nueva = []
+  
+  for art in lista_stock:
+    if art[1] == 0:
+      lista_stock0.append(art[0])
+
+  for cod in lista_stock0:
+    for art in lista:
+      if art[0] == cod:
+        datos = [art[0],art[1],art[4]]
+        lista_nueva.append(datos)
+        
+  return print("articulos con stock 0:\n" + str(lista_nueva))
+#imprimir_stock0(lista_p,lista_s)
+
+#Realice una función que utilizando la lista de productos creada en a) y en b) genere una nueva lista con la información completa de los artículos que no requieren frío, indicando además la cantidad existente.
+
+def imprimir_lista_con_stock(lista):
+  for i in lista:
+    print(
+      "codigo: " + str(i[0]) + "\n" +
+      "nombre: " + i[1] + "\n" +
+      "descripcion: " + i[2] + "\n" +
+      "precio: " + str(i[3]) + "\n" +
+      "proveedor: " + i[4] + "\n" +
+      "requiere refrigeración: " + i[5] + "\n" +
+      "stock: " + str(i[6]) + "\n"
+    )
+
+def datos_refri_n(lista,lista_stock):
+  lista_refri_n = []
+  lista_nueva = []
+  
+  for art in lista:
+    if art[5].upper() == "N":
+      lista_refri_n.append(art)
+
+  for art in lista_refri_n:
+    for i in lista_stock:
+      if art[0] == i[0]:
+        dato = [art[0],art[1],art[2],art[3],art[4],art[5],i[1]]
+        lista_nueva.append(dato)
+
+  return imprimir_lista_con_stock(lista_nueva) 
+#datos_refri_n(lista_p,lista_s)
+
+
+#Construir un menú, el menú deberá permitir ingresar 5 opciones, La opción 0 permite salir del menú, el resto de las opciones permiten:
+# datos de los artículos que necesitan o no refrigeración, dependiendo del valor ingresado por el usuario
+#- imprimir la cantidad de artículos que precisan refrigeración
+#- imprimir la cantidad de artículos que no requieren refrigeración
+#- imprimir los datos de los artículos cuyo stock es 0
+#- imprimir la información completa de los artículos que no requieren frío
+
+menu = int(input("Menú Principal\n 1 - Ver datos de los productos R/N.\n 2 - Ver cantidad de productos que necesitan refrigeración.\n 3 - Ver cantidad de productos que NO necesitan refrigeración.\n 4 - Ver datos de los productos sin stock.\n 5 - Ver la información completa de los articulos que no requieren frío\n 0 - Salir \n"))
+exit = False
+if menu == 0:
+  exit = True
+
+while not exit:
+  
+  if menu == 1:
+    imprimir_refri(lista_p)
+  elif menu == 2:
+    cant_refri(lista_p)
+  elif menu == 3:
+    cant_refri(lista_p)
+  elif menu == 4:
+    imprimir_stock0(lista_p,lista_s)
+  elif menu == 5:
+    datos_refri_n(lista_p,lista_s)
+  else:
+    print("ERROR - ingrese un valor válido")
+    
+  menu = int(input("Menú Principal\n 1 - Ver datos de los productos R/N.\n 2 - Ver cantidad de productos que necesitan refrigeración.\n 3 - Ver cantidad de productos que NO necesitan refrigeración.\n 4 - Ver datos de los productos sin stock.\n 5 - Ver la información completa de los articulos que no requieren frío\n 0 - Salir \n"))
