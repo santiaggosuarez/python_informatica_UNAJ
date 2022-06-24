@@ -352,20 +352,34 @@ def cantidad_oraciones(texto):
 
 #La cantidad de palabras que comienzan con vocal o con consonante, dependiendo del valor ingresado por el usuario.
 def cantidad_palabras_vc(texto):
+  palabras = texto.lower().split()
   parametro = input("ingrese 'V' para vocal y 'C' para consonante: ")
   vocal = 0
   consonante = 0
-  for texto.split() in texto:
-    if texto.split()[0] in ("a","e","i","o","u"):
+  
+  for pal in palabras:
+    if pal[0] in ("a","e","i","o","u"):
       vocal += 1
     else:
       consonante += 1
-  if parametro.lower == "v":
+      
+  if parametro.lower() == "v":
     return vocal
-  elif parametro.lower == "c":
+  elif parametro.lower() == "c":
     return consonante
   else:
-    return "ingrese un dato válido"
+    return "ERROR ingrese un dato válido"
+#print(cantidad_palabras_vc(texto))
+    
+#Buscar una palabra ingresada por el usuario y retornar la cantidad de veces que se encuentra en el texto.
+def buscar_palabra(texto):
+  palabra = input("ingrese la palabra a buscar: ")
+  palabras_separadas = texto.lower().split()
+  cant = 0
 
-
-print(cantidad_palabras_vc(texto))
+  for pal in palabras_separadas:
+    if pal.lower() == palabra.lower():
+      cant += 1
+      
+  return cant
+print(buscar_palabra(texto))
