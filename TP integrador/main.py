@@ -1,4 +1,4 @@
-lista_datos = [['Emiliano', 'Martinez', 'arq', 29, 1.95, 18, 0, 50.0], ['Franco', 'Armani', 'arq', 34, 1.89, 29, 0, 5.0], ['Cristian', 'Romero', 'def', 23, 1.85, 15, 2, 80.0], ['Nicolas', 'Otamendi', 'def', 33, 1.83, 70, 6, 15.0], ['Rodrigo', 'De Paul', 'med', 27, 1.8, 45, 11, 60.0], ['Angel', 'Di Maria', 'del', 33, 1.8, 123, 25, 65.0], ['Giovani', 'Lo Celso', 'med', 25, 1.77, 58, 8, 70.0], ['Lautaro', 'Martinez', 'del', 24, 1.74, 38, 20, 90.0], ['Lionel', 'Messi', 'del', 35, 1.69, 165, 86, 150.0], ['Julian', 'Alvarez', 'del', 21, 1.77, 8, 1, 60.0]]
+lista_datos = [['Emiliano', 'Martinez', 'arq', 29, 195, 18, 0, 50.0], ['Franco', 'Armani', 'arq', 34, 189, 29, 0, 5.0], ['Cristian', 'Romero', 'def', 23, 185, 15, 2, 80.0], ['Nicolas', 'Otamendi', 'def', 33, 183, 70, 6, 15.0], ['Rodrigo', 'De Paul', 'med', 27, 180, 45, 11, 60.0], ['Angel', 'Di Maria', 'del', 33, 180, 123, 25, 65.0], ['Giovani', 'Lo Celso', 'med', 25, 177, 58, 8, 70.0], ['Lautaro', 'Martinez', 'del', 24, 174, 38, 20, 90.0], ['Lionel', 'Messi', 'del', 35, 169, 165, 86, 150.0], ['Julian', 'Alvarez', 'del', 21, 177, 8, 1, 60.0]]
 
 #carga de datos
 def carga_datos():
@@ -12,7 +12,9 @@ def carga_datos():
       edad = int(input("Edad: "))
       while len(str(edad)) > 2:
         edad = int(input("Por favor ingrese una edad válida: "))
-      altura = float(input("Altura en metros: "))
+      altura = float(input("Altura en centimetros: "))
+      while len(str(altura)) > 3:
+        altura = int(input("Por favor ingrese una altura válida: "))
       partidos = int(input("Cantidad de partidos jugados: "))
       goles = int(input("Goles: "))
       cotizacion = float(input("Cotización en millones $USD: "))
@@ -20,105 +22,141 @@ def carga_datos():
       lista.append(datos)
   return lista
 
-def promedio_edad(lista):
+def promedio(lista,indice_a_promediar):
   suma = 0
   cant = 0
   promedio = 0
   for i in lista:
-    suma += i[3]
+    suma += i[indice_a_promediar]
     cant += 1
   promedio = float(suma/cant)
   return promedio
-#print("El promedio de edad en el plantel es de: " + str(promedio_edad(lista_datos)) + " años.")
 
-def promedio_altura(lista):
-  suma = 0
-  cant = 0
-  promedio = 0
-  for i in lista:
-    suma += i[4]
-    cant += 1
-  promedio = float(suma/cant)
-  return promedio
-#print("La altura promedio del plantel es de: " + str(promedio_altura(lista_datos)) + " mts.")
+#edad
+edad = promedio(lista_datos,3)
+#print(edad)
+#altura
+alt = promedio(lista_datos,4)
+#print(alt)
+#valor
+val = promedio(lista_datos,7)
+#print(val)
 
-def promedio_valor(lista):
-  suma = 0
-  cant = 0
-  promedio = 0
-  for i in lista:
-    suma += i[7]
-    cant += 1
-  promedio = float(suma/cant)
-  return promedio
-#print("El valor promedio del plantel es de: " + str(promedio_valor(lista_datos)) + " millones $USD.")
-
-def goleador(lista):
-  lista_goleador = []
+def obtener_mayor(lista,indice_a_comparar):
+  lista2 = []
   cant = 0
   for i in lista:
-    if i[6] > cant:
-      cant = i[6]
+    if i[indice_a_comparar] > cant:
+      cant = i[indice_a_comparar]
       nombre = i[0]
       apellido = i[1]
-      goles = i[6]
-      dato = [nombre + " " + apellido, goles]
-      lista_goleador = dato
-  return lista_goleador
-#print(goleador(lista_datos))
-
-def mas_partidos(lista):
-  lista_mas_partidos = []
-  cant = 0
-  for i in lista:
-    if i[5] > cant:
-      cant = i[5]
-      nombre = i[0]
-      apellido = i[1]
-      partidos = i[5]
-      dato = [nombre + " " + apellido, partidos]
-      lista_mas_partidos = dato
-  return lista_mas_partidos
-#print(mas_partidos(lista_datos))
-
-def mas_viejo(lista):
-  lista_viejo = []
-  edad_mayor = 0
-  for i in lista:
-    if i[3] > edad_mayor:
-      edad_mayor = i[3]
-      nombre = i[0]
-      apellido = i[1]
-      edad = i[3]
-      dato = [nombre + " " + apellido, edad]
-      lista_viejo = dato
-  return lista_viejo
-#print(mas_viejo(lista_datos))
-
-def mas_joven(lista):
-  lista_joven = []
-  edad_menor = 100
-  for i in lista:
-    if i[3] < edad_menor:
-      edad_menor = i[3]
-      nombre = i[0]
-      apellido = i[1]
-      edad = i[3]
-      dato = [nombre + " " + apellido, edad]
-      lista_joven = dato
-  return lista_joven
-#print(mas_joven(lista_datos))
-
-def mas_caro(lista):
-  lista_caro = []
-  valor_max = 0
-  for i in lista:
-    if i[7] > valor_max:
-      valor_max = i[7]
-      nombre = i[0]
-      apellido = i[1]
-      valor = i[7]
+      valor = i[indice_a_comparar]
       dato = [nombre + " " + apellido, valor]
-      lista_caro = dato
-  return lista_caro
-print(mas_caro(lista_datos))
+      lista2 = dato
+  return lista2
+
+def obtener_menor(lista,indice_a_comparar):
+  lista2 = []
+  cant = 999999
+  for i in lista:
+    if i[indice_a_comparar] < cant:
+      cant = i[indice_a_comparar]
+      nombre = i[0]
+      apellido = i[1]
+      valor = i[indice_a_comparar]
+      dato = [nombre + " " + apellido, valor]
+      lista2 = dato
+  return lista2
+
+#goleador
+gol = obtener_mayor(lista_datos,6)
+#print(gol)
+#mas partidos
+part = obtener_mayor(lista_datos,5)
+#print(part)
+#mas viejo
+viejo = obtener_mayor(lista_datos,3)
+#print(viejo)
+#mas caro
+caro = obtener_mayor(lista_datos,7)
+#print(caro)
+#mas joven
+joven = obtener_menor(lista_datos,3)
+#print(joven)
+
+def actualizar_datos(lista):
+  print("\nIngrese los datos del jugador a eliminar:")
+  nombre_borrar = input("\nIngrese el nombre: ")
+  apellido_borrar = input("Ingrese el apellido: ")
+  
+  for i in lista:
+    #borrar si existe
+    if i[0].lower() == nombre_borrar.lower() and i[1].lower() == apellido_borrar.lower():
+      lista.remove(i)
+      #agregar jugador nuevo
+      print("\nIngrese los datos del jugador a agregar:")
+      nombre = input("\nNombre: ")
+      apellido = input("Apellido: ")
+      posicion = input("Posición (ARQ, DEF, MED o DEL): ")
+      while posicion.upper() != "ARQ" and posicion.upper() != "DEF" and posicion.upper() != "MED" and posicion.upper() != "DEL":
+        posicion = input("Por favor ingrese una posición válida (ARQ, DEF, MED o DEL): ")
+      edad = int(input("Edad: "))
+      while len(str(edad)) > 2:
+        edad = int(input("Por favor ingrese una edad válida: "))
+      altura = float(input("Altura en centimetros: "))
+      while len(str(altura)) > 3:
+        altura = int(input("Por favor ingrese una altura válida: "))
+      partidos = int(input("Cantidad de partidos jugados: "))
+      goles = int(input("Goles: "))
+      cotizacion = float(input("Cotización en millones $USD: "))
+      datos = [nombre,apellido,posicion,edad,altura,partidos,goles,cotizacion]
+      lista.append(datos)
+    return lista
+
+def imprimir_lista_de_listas(lista):
+  for i in lista:
+    for j in i:
+      print(j)
+
+def cantidad_por_posicion(lista):
+  pos = input("\nIngrese la posición: ")
+  while pos.upper() != "ARQ" and pos.upper() != "DEF" and pos.upper() != "MED" and pos.upper() != "DEL":
+    pos = input("Por favor ingrese una posición válida (ARQ, DEF, MED o DEL): ")
+  lista_pos = []
+
+  for i in lista:
+    if i[2] == pos:
+      dato = [pos.upper() + ": " + i[0] + " " + i[1]]
+      lista_pos.append(dato)
+
+  return imprimir_lista_de_listas(lista_pos)
+  
+
+def menu(lista):
+  print("\nMENÚ")
+  salir = False
+  while not salir:
+    op = input("\nIngrese una opción:\n 1 - Ver lista de jugadores por posición.\n 2 - Obtener promedio de edad del plantel.\n 3 - Obtener promedio de altura del plantel.\n 4 - Obtener valor promedio del plantel.\n 5 - Ver goleador.\n 6 - Ver jugador con más presencias.\n 7 - Ver jugador más jovén.\n 8 - Actualizar datos.\n 0 - Salir.\n")
+
+    if op == "1":
+      cantidad_por_posicion(lista)
+    elif op == "2":
+      print(promedio(lista,3))
+    elif op == "3":
+      print(promedio(lista,4))
+    elif op == "4":
+      print(promedio(lista,7))
+    elif op == "5":
+      print(obtener_mayor(lista,6))
+    elif op == "6":
+      print(obtener_mayor(lista,5))
+    elif op == "7":
+      print(obtener_menor(lista,3))
+    elif op == "8":
+      actualizar_datos(lista)
+    elif op == "0":
+      salir = True
+    else:
+      print("\nDato inválido")
+
+menu(lista_datos)
