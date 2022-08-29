@@ -1,18 +1,15 @@
 #Implemente un programa que pida el ingreso de 10 numeros y luego imprima aquellos numeros ingresados mayores al promedio
 
-num = int(input("ingrese un numero: "))
-cant = 0
 suma = 0
 lista_num = []
 lista_may = []
 
-while cant < 9:
+for i in range(10):
+  num = int(input("ingrese un numero: "))
   lista_num.append(num)
   suma += num
-  cant += 1
-  num = int(input("ingrese un numero: "))
 
-promedio = suma/cant
+promedio = suma/10
 
 for i in lista_num:
   if i > promedio:
